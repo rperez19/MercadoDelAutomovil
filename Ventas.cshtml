@@ -1,0 +1,36 @@
+﻿@{
+    var db = Database.Open("Ventas-2010-01-06");
+   var selectQueryString = "SELECT * FROM Primer_Semestre ORDER BY Marca";
+}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Mercado</title>
+   <style>
+       table, th, td {
+          border: solid 1px #bbbbbb;
+          border-collapse: collapse;
+          padding: 2px;
+          }
+       </style>
+</head>
+<body>
+    <h1>Ventas de automóviles</h1>
+   <table>
+       <thead>
+          <tr>
+             <th>Marca</th>
+             <th>Ventas</th>
+          </tr>
+       </thead>
+          <tbody>
+          @foreach(var row in db.Query(selectQueryString)){
+            <tr>
+                <td>@row.Marca</td>
+                <td>@row.Ventas</td>
+             </tr>
+          }
+       </tbody>
+</table>
+</body>
+</html>
